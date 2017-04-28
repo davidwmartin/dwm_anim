@@ -2,6 +2,8 @@
 
 Basic framework for working with HTML5 Canvas / javascript animations. See section "Library Build" for more info. 
 
+Not working at this point, still sketching out ideas. 
+
 
 ## Started Here: 
 
