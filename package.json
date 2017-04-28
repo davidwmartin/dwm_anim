@@ -1,0 +1,26 @@
+{
+  "name": "dwm_anim",
+  "version": "0.1.0",
+  "description": "basic framework for creating and exporting html canvas / javascript animations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidwmartin/dwm_anim.git"
+  },
+  "keywords": [
+    "canvas",
+    "html5",
+    "javascript",
+    "animation"
+  ],
+  "author": "david w martin",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/davidwmartin/dwm_anim/issues"
+  },
+  "homepage": "https://github.com/davidwmartin/dwm_anim#readme"
+}
