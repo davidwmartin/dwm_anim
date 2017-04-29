@@ -5,7 +5,7 @@ var animation = {
 }
 
 
-funtion drawAnimation(){
+function drawAnimation(){
 	// draw function for this animation
 
 	if (animation.continuous == true){

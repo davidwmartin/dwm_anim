@@ -1,31 +1,19 @@
-// var fs = require('fs'),
-// 	http = require('http'), 
-// 	io = require('socket.io')(server);
-
-// var server = http.createServer();
-
-
-
-// io.sockets.on('connection', function(client){
-// 	console.log('connection');
-//   client.on('event', function(data){
-//   	console.log(data);
-//   });
-//   client.on('disconnect', function(){});
-// });
-
-
-// server.listen(6969);
-
-
-////////// Simple Tutorial: https://www.sitepoint.com/creating-a-http-server-in-node-js/ 
-// stackoverflow help: http://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
+////////
 
 var http = require('http'),
 		fs = require('fs'), 
-		path = require('path');
+		path = require('path'), 
+    webpack = require('webpack');
 
-// set vars
+
+
+
+/****** 
+**** SIMPLE HTTP SERVER
+******/
+// Simple Tutorial: https://www.sitepoint.com/creating-a-http-server-in-node-js/ 
+// stackoverflow help: http://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
+
 var port = 6969;
 
 var server = http.createServer(function(request, response){
@@ -38,7 +26,7 @@ var server = http.createServer(function(request, response){
 
 	var filePath = '.' + request.url;
   if (filePath == './')
-      filePath = './site/index.html';
+      filePath = './serve/index.html';
 
   var extname = path.extname(filePath);
   var contentType = 'text/html';
@@ -66,6 +54,7 @@ var server = http.createServer(function(request, response){
   fs.readFile(filePath, function(error, content) {
       if (error) {
           if(error.code == 'ENOENT'){
+            // TODO: 404
               fs.readFile('./404.html', function(error, content) {
                   response.writeHead(200, { 'Content-Type': contentType });
                   response.end(content, 'utf-8');

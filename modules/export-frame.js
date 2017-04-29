@@ -13,7 +13,7 @@ function exportFrame(frame, i){
 	link.click();
 	// Cleanup the DOM
 	document.body.removeChild(link);
-	delete link;
+	// delete link;
 }
 
 module.exports = exportFrame;
