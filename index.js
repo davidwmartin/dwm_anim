@@ -5,7 +5,7 @@
 var draw = require('./modules/draw'),
 		exportFrame = require('./modules/export-frame'),
 		stepper = require('./modules/stepper'),
-		animation = require('./animations/sample.js');
+		animation = require('./animations/test.js');
 
 
 // When window loads, get errything started
@@ -26,7 +26,7 @@ window.addEventListener('load', boomBoom());
 
 function playAnimation(){
 	console.log('called playAnimation()');
-	animation.draw;
+	window.requestAnimationFrame(animation.draw);
 }
 
 /******

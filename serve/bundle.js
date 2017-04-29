@@ -67,26 +67,7 @@
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */
-/***/ (function(module, exports) {
-
-var animation = {
-	name: 'sample',
-	draw: drawAnimation,
-	continuous: true
-};
-
-function drawAnimation() {
-	// draw function for this animation
-
-	if (animation.continuous == true) {
-		window.requestAnimationFrame(animation.draw);
-	}
-}
-
-module.exports = animation;
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ (function(module, exports) {
 
@@ -162,7 +143,7 @@ module.exports = stepper;
 var draw = __webpack_require__(1),
     exportFrame = __webpack_require__(2),
     stepper = __webpack_require__(3),
-    animation = __webpack_require__(0);
+    animation = __webpack_require__(5);
 
 // When window loads, get errything started
 console.log('index.js loaded');
@@ -181,7 +162,7 @@ window.addEventListener('load', boomBoom());
 
 function playAnimation() {
 	console.log('called playAnimation()');
-	animation.draw;
+	window.requestAnimationFrame(animation.draw);
 }
 
 /******
@@ -212,6 +193,70 @@ function boomBoom(toVid = false) {
 
 // TODO: do I need to export anything?
 // module.exports = boomBoom;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var lib = __webpack_require__(7);
+
+var animation = {
+	name: 'sample',
+	draw: drawAnimation,
+	continuous: false
+};
+
+// draw function for this animation -- this draws each frame
+function drawAnimation() {
+
+	lib.canvas();
+
+	// console.log(canvas);
+
+	if (animation.continuous == true) {
+		window.requestAnimationFrame(animation.draw);
+	}
+}
+
+module.exports = animation;
+
+/***/ }),
+/* 6 */,
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// animation library manifest
+
+var canvas = __webpack_require__(8);
+
+var dwmanim = {
+	canvas: canvas
+};
+
+module.exports = dwmanim;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+
+function createCanvas() {
+  canvas = document.getElementById('canvas1');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  var ctx = canvas.getContext('2d');
+
+  ctx.beginPath();
+  ctx.arc(100, 100, 57, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'green';
+  ctx.fill();
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = '#003300';
+  ctx.stroke();
+}
+
+module.exports = createCanvas;
 
 /***/ })
 /******/ ]);
