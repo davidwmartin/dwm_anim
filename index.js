@@ -1,11 +1,16 @@
 /******
-**** require modules
+**** setup
 ******/
 
 var draw = require('./modules/draw'),
 		exportFrame = require('./modules/export-frame'),
 		stepper = require('./modules/stepper'),
 		animation = require('./animations/sample.js');
+
+
+// When window loads, get errything started
+console.log('index.js loaded');
+window.addEventListener('load', boomBoom());
 
 
 /******
@@ -20,6 +25,7 @@ var draw = require('./modules/draw'),
 // NOTE -- this strategy will require webpack or browserify or something similar so that I can utilize the above required files in a browser context
 
 function playAnimation(){
+	console.log('called playAnimation()');
 	animation.draw;
 }
 
@@ -28,6 +34,7 @@ function playAnimation(){
 ******/
 
 function exportAnimation(){
+	console.log('called exportAnimation()');
 	// indicate that this is not a continous animation (which would be iterated using window.requestAnimationFrame)
 	animation.continuous = false;
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
@@ -39,7 +46,8 @@ function exportAnimation(){
 **** execute function
 ******/
 
-function boomBoom(toVid){
+function boomBoom(toVid = false){
+	console.log('boom boom we got some room');
 	if(toVid == true){
 		exportAnimation();
 	}

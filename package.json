@@ -4,7 +4,7 @@
   "description": "basic framework for creating and exporting html canvas / javascript animations",
   "main": "index.js",
   "scripts": {
-    "build": "webpack"
+    "serve": "webpack"
   },
   "repository": {
     "type": "git",

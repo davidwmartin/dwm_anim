@@ -156,13 +156,17 @@ module.exports = stepper;
 /***/ (function(module, exports, __webpack_require__) {
 
 /******
-**** require modules
+**** setup
 ******/
 
 var draw = __webpack_require__(1),
     exportFrame = __webpack_require__(2),
     stepper = __webpack_require__(3),
     animation = __webpack_require__(0);
+
+// When window loads, get errything started
+console.log('index.js loaded');
+window.addEventListener('load', boomBoom());
 
 /******
 **** play animation loop (browser)
@@ -176,6 +180,7 @@ var draw = __webpack_require__(1),
 // NOTE -- this strategy will require webpack or browserify or something similar so that I can utilize the above required files in a browser context
 
 function playAnimation() {
+	console.log('called playAnimation()');
 	animation.draw;
 }
 
@@ -184,6 +189,7 @@ function playAnimation() {
 ******/
 
 function exportAnimation() {
+	console.log('called exportAnimation()');
 	// indicate that this is not a continous animation (which would be iterated using window.requestAnimationFrame)
 	animation.continuous = false;
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
@@ -195,7 +201,8 @@ function exportAnimation() {
 **** execute function
 ******/
 
-function boomBoom(toVid) {
+function boomBoom(toVid = false) {
+	console.log('boom boom we got some room');
 	if (toVid == true) {
 		exportAnimation();
 	} else {
