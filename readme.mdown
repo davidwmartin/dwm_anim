@@ -2,7 +2,19 @@
 
 Basic framework for working with HTML5 Canvas / javascript animations. See section "Library Build" for more info. 
 
-Not working at this point, still sketching out ideas. 
+Very rough implementation, still sketching out ideas. 
+
+To start: 
+
+	webpack --config webpack.config.js
+
+And in separate window: 
+
+	node server.js
+
+Now you have a server running on port 6969
+
+Load the page with a browser and the animation gets triggered. 
 
 
 ## Started Here: 
