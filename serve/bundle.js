@@ -63,11 +63,42 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var lib = __webpack_require__(5);
+
+var animation = {
+	name: 'sample',
+	draw: drawAnimation,
+	continuous: false
+};
+
+// draw function for this animation -- this draws each frame
+function drawAnimation() {
+
+	var ctx = lib.canvas('canvas1');
+
+	ctx.beginPath();
+	ctx.arc(100, 100, 57, 0, 2 * Math.PI, false);
+	ctx.fillStyle = 'green';
+	ctx.fill();
+	ctx.lineWidth = 5;
+	ctx.strokeStyle = '#003300';
+	ctx.stroke();
+
+	if (animation.continuous == true) {
+		window.requestAnimationFrame(animation.draw);
+	}
+}
+
+module.exports = animation;
+
+/***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
@@ -134,6 +165,58 @@ module.exports = stepper;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+// Pretty much yoinked this from radarboy3000 -- https://hackernoon.com/creative-coding-basics-4d623af1c647
+
+
+// call this, it cretes a canvas and returns it's context
+function createCanvas(canvasName) {
+	var body = document.querySelector('body');
+	var canvas = document.createElement('canvas');
+	canvas.setAttribute('id', canvasName);
+	body.appendChild(canvas);
+
+	var ctx = canvas.getContext('2d');
+	resize();
+
+	window.addEventListener('resize', resize, false);
+
+	return ctx;
+}
+
+function resize() {
+	// TODO -- resizing window causes canvas to go blank
+	console.log('resize function call');
+	var c = document.getElementsByTagName('canvas');
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	for (var i = 0; i < c.length; i++) {
+		c[i].width = width;
+		c[i].height = height;
+	}
+}
+
+module.exports = createCanvas;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// animation library manifest
+
+var canvas = __webpack_require__(4),
+    utility = __webpack_require__(7);
+
+var dwmanim = {
+	canvas: canvas,
+	utility: utility
+};
+
+module.exports = dwmanim;
+
+/***/ }),
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /******
@@ -143,7 +226,7 @@ module.exports = stepper;
 var draw = __webpack_require__(1),
     exportFrame = __webpack_require__(2),
     stepper = __webpack_require__(3),
-    animation = __webpack_require__(5);
+    animation = __webpack_require__(0);
 
 // When window loads, get errything started
 console.log('index.js loaded');
@@ -195,68 +278,22 @@ function boomBoom(toVid = false) {
 // module.exports = boomBoom;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var lib = __webpack_require__(7);
-
-var animation = {
-	name: 'sample',
-	draw: drawAnimation,
-	continuous: false
-};
-
-// draw function for this animation -- this draws each frame
-function drawAnimation() {
-
-	lib.canvas();
-
-	// console.log(canvas);
-
-	if (animation.continuous == true) {
-		window.requestAnimationFrame(animation.draw);
-	}
-}
-
-module.exports = animation;
-
-/***/ }),
-/* 6 */,
 /* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// animation library manifest
-
-var canvas = __webpack_require__(8);
-
-var dwmanim = {
-	canvas: canvas
-};
-
-module.exports = dwmanim;
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports) {
 
+var u = {};
 
-function createCanvas() {
-  canvas = document.getElementById('canvas1');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+// Generate a random number: float and integer
+u.randFloat = function randFloat(low = 0, high = 1) {
+	// note -- no params = random num between 0 and 1 (useful for percentages)
+	return Math.random() * (high - low) + low;
+};
 
-  var ctx = canvas.getContext('2d');
+u.randInt = function randInt(low, high) {
+	return Math.floor(Math.random() * (high - low + 1) + low);
+};
 
-  ctx.beginPath();
-  ctx.arc(100, 100, 57, 0, 2 * Math.PI, false);
-  ctx.fillStyle = 'green';
-  ctx.fill();
-  ctx.lineWidth = 5;
-  ctx.strokeStyle = '#003300';
-  ctx.stroke();
-}
-
-module.exports = createCanvas;
+module.exports = u;
 
 /***/ })
 /******/ ]);

@@ -9,9 +9,16 @@ var animation = {
 // draw function for this animation -- this draws each frame
 function drawAnimation(){
 	
-	lib.canvas();
+	var ctx = lib.canvas('canvas1');
 
-	// console.log(canvas);
+	ctx.beginPath();
+  ctx.arc(100, 100, 57, 0, 2 * Math.PI, false);
+  ctx.fillStyle = 'green';
+  ctx.fill();
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = '#003300';
+  ctx.stroke();
+
 
 	if (animation.continuous == true){
 		window.requestAnimationFrame(animation.draw);
