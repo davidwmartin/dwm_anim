@@ -10,7 +10,7 @@ var draw = require('./modules/draw'),
 
 // When window loads, get errything started
 console.log('index.js loaded');
-window.addEventListener('load', boomBoom());
+window.addEventListener("load", boomBoom());
 
 
 /******
@@ -26,6 +26,8 @@ window.addEventListener('load', boomBoom());
 
 function playAnimation(){
 	console.log('called playAnimation()');
+	window.requestAnimationFrame(animation.setup);
+	// TODO -- this seems jank -- not sure why I have to call window.rAF on the setup function, but calling just animation.setup() causes the createCanvas function to fail when it can't find the body element 
 	window.requestAnimationFrame(animation.draw);
 }
 

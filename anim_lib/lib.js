@@ -1,11 +1,9 @@
 // animation library manifest
 
-var canvas = require('./canvas'), 
-	utility = require('./utility');
+var dwmanim = {};
 
-var dwmanim = {
-	canvas: canvas,
-	utility: utility
-}
+dwmanim.canvas = require('./canvas'); 
+dwmanim.utility = require('./utility');
+dwmanim.shapes = require('./shapes');
 
 module.exports = dwmanim;
