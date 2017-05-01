@@ -6,10 +6,7 @@ var animation = module.exports = {
 	name: 'sample',
 	continuous: true, 
 	setup: setupAnimation,
-	draw: drawFrame, 
-	persist: {
-		// object to contain any properties that need to be passed between setup & draw or persisted accross frames (e.g. an array of particles)
-	} 
+	draw: drawFrame
 }
 
 // initial setup stuff that shouldn't get looped every time

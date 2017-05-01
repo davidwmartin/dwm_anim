@@ -1,5 +1,7 @@
 var u = module.exports = {};
 
+// TODO -- consider assigning all these methods to canvasRenderingContext2d.prototype to make using them less verbose and remove the need to pass a context to certain functions (or maybe do that at lib level ?)
+
 /***
 ** Math Functions
 ***/

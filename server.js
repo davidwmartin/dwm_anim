@@ -5,6 +5,9 @@ var http = require('http'),
 		path = require('path'), 
     webpack = require('webpack');
 
+// TODO -- move server reqs into different folder? or subfolders of /modules ? (for organizational / clarity purposes)
+var saveFrame = require('./modules/save-frame.js');
+
 
 
 
@@ -24,54 +27,72 @@ var server = http.createServer(function(request, response){
 
 	// webIndex.pipe(response);
 
-	var filePath = '.' + request.url;
-  if (filePath == './')
-      filePath = './serve/index.html';
+  if (request.method == 'POST'){
+    // var b;
+    request.on('data', function(data){
+      // var imgBuffer = {}
+      // imgBuffer = new Buffer('buffer', data);
+      // console.log(data);
+      // return imgBuffer;
+      b = new Buffer(data, 'base64');
+      // fs.createWriteStream('out.png').pipe(data);
+      
+      saveFrame(b);
 
-  var extname = path.extname(filePath);
-  var contentType = 'text/html';
-  switch (extname) {
-      case '.js':
-          contentType = 'text/javascript';
-          break;
-      case '.css':
-          contentType = 'text/css';
-          break;
-      case '.json':
-          contentType = 'application/json';
-          break;
-      case '.png':
-          contentType = 'image/png';
-          break;      
-      case '.jpg':
-          contentType = 'image/jpg';
-          break;
-      case '.wav':
-          contentType = 'audio/wav';
-          break;
+    });
+    // console.log(frame);
+    // saveFrame(frame);
+    response.end();
   }
+  else {
+  	var filePath = '.' + request.url;
+    if (filePath == './')
+        filePath = './serve/index.html';
 
-  fs.readFile(filePath, function(error, content) {
-      if (error) {
-          if(error.code == 'ENOENT'){
-            // TODO: 404
-              fs.readFile('./404.html', function(error, content) {
-                  response.writeHead(200, { 'Content-Type': contentType });
-                  response.end(content, 'utf-8');
-              });
-          }
-          else {
-              response.writeHead(500);
-              response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
-              response.end(); 
-          }
-      }
-      else {
-          response.writeHead(200, { 'Content-Type': contentType });
-          response.end(content, 'utf-8');
-      }
-  });
+    var extname = path.extname(filePath);
+    var contentType = 'text/html';
+    switch (extname) {
+        case '.js':
+            contentType = 'text/javascript';
+            break;
+        case '.css':
+            contentType = 'text/css';
+            break;
+        case '.json':
+            contentType = 'application/json';
+            break;
+        case '.png':
+            contentType = 'image/png';
+            break;      
+        case '.jpg':
+            contentType = 'image/jpg';
+            break;
+        case '.wav':
+            contentType = 'audio/wav';
+            break;
+    }
 
+    fs.readFile(filePath, function(error, content) {
+        if (error) {
+            if(error.code == 'ENOENT'){
+              // TODO: 404
+                fs.readFile('./404.html', function(error, content) {
+                    response.writeHead(200, { 'Content-Type': contentType });
+                    response.end(content, 'utf-8');
+                });
+            }
+            else {
+                response.writeHead(500);
+                response.end('Sorry, check with the site admin for error: '+error.code+' ..\n');
+                response.end(); 
+            }
+        }
+        else {
+            response.writeHead(200, { 'Content-Type': contentType });
+            response.end(content, 'utf-8');
+        }
+    });
+  }
 });
 
 

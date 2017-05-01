@@ -2,15 +2,14 @@
 **** setup
 ******/
 
-var draw = require('./modules/draw'),
-		exportFrame = require('./modules/export-frame'),
-		stepper = require('./modules/stepper'),
+var stepper = require('./modules/stepper'),
 		animation = require('./animations/test.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
 window.addEventListener("load", boomBoom());
+
 
 
 /******
@@ -41,14 +40,15 @@ function exportAnimation(){
 	animation.continuous = false;
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
 	// TODO: set desired number of frames variable somewhere (also framerate?)
-	stepper(animation.draw, howManyFrames);
+	var howManyFrames = 1;
+	stepper(animation, howManyFrames);
 }
 
 /******
 **** execute function
 ******/
 
-function boomBoom(toVid = false){
+function boomBoom(toVid = true){
 	console.log('boom boom we got some room');
 	if(toVid == true){
 		exportAnimation();

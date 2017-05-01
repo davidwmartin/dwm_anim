@@ -23,7 +23,11 @@ var config = {
       }
     ]
   }, 
-  watch: true
+  watch: true,
+  // target: 'node',
+  resolve: {
+    // module: ['node_modules']
+  }
 }
 
 module.exports = config;

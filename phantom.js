@@ -11,8 +11,9 @@ page.open("http://localhost:6969", function start(status) {
     console.log(status);
   }
   else{
-    page.render('frame.jpeg', {format: 'jpeg', quality: '100'});
-    console.log('weeeeee');
+    // page.render('frame.png', {format: 'png'});
+    // console.log('weeeeee');
+    // console.log(status);
     phantom.exit();
   }
 });

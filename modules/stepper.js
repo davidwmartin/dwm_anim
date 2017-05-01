@@ -1,17 +1,17 @@
-function stepper(drawFrame, howManyFrames){
-	
+var exportFrame = require('./export-frame.js');
+
+function stepper(animation, howManyFrames){
+
+	animation.setup();
 	// iterates as many times as there are frames
-	for(i = 0; i < howManyFrames; i++) {
-	
+	for(j = 0; j < howManyFrames; j++) {
 		// drawFrame should return current canvas object
-		var _frame = drawFrame();
-		exportFrame(_frame, i);
+		var _frame = animation.draw();
+		exportFrame(_frame, j);
 	}
 
 	// finish function will shut down server, kick off processor, etc.
-	finish();
+	// finish();
 }
-
-// module.exports = stepper(howManyFrames);
 
 module.exports = stepper;
