@@ -3,6 +3,7 @@
 var http = require('http'),
 		fs = require('fs'), 
 		path = require('path'), 
+    request = require('request'),
     webpack = require('webpack');
 
 // TODO -- move server reqs into different folder? or subfolders of /modules ? (for organizational / clarity purposes)
@@ -17,30 +18,26 @@ var saveFrame = require('./modules/save-frame.js');
 // Simple Tutorial: https://www.sitepoint.com/creating-a-http-server-in-node-js/ 
 // stackoverflow help: http://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
 
-var frames = [];
-
 var port = 6969;
 
 var server = http.createServer(function(request, response){
 	// response.writeHead(200, {"Content-Type": "text/html"});
 	console.log('mmm connection');
 
-	// var webIndex = fs.createReadStream('./index.html');
 
-	// webIndex.pipe(response);
-
+  // if animation frontend POSTs data (b64 png "frames"), export / save them to disk
   if (request.method == 'POST'){
-    // var b;
-    request.on('data', function(data){
-      
-      b = new Buffer(data, 'base64');
-      frames.push(b.toString());
-
-    });
-    response.end(function(){
-      console.log(frames.length);
+    console.log('new POST');
+    ////////// 
+    var reqComplete = [];
+    request.on('data', function(chunk) {
+      reqComplete.push(chunk);
+    }).on('end', function() {
+      reqComplete = Buffer.concat(reqComplete).toString();
+      saveFrame(reqComplete);
     });
   }
+  // else serve the site -- currently assuming single entry point. swap animations by changing what animation object is required in index.js
   else {
   	var filePath = '.' + request.url;
     if (filePath == './')

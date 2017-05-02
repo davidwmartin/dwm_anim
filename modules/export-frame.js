@@ -1,28 +1,28 @@
 
 // takes two arguments: canvas to be exported, and index count (for naming purposes)
 function exportFrame(frame, i){
+	var postThis = {};
 	// get dataURL from current canvas
-	var dataURL = frame.toDataURL("image/png");
-	var theFileName = 'frame' + i + '.png';
+	postThis.frame = frame.toDataURL("image/png");
+	postThis.number = i;
+	// var dataURL = frame.toDataURL("image/png");
+	// var theFileName = 'frame' + i + '.png';
 
-	var req = new XMLHttpRequest();
 	var req = new XMLHttpRequest();
 	req.open("POST", 'http://localhost:6969', true);
-	req.onload = function (oEvent) {
-		// Uploaded.
-	};
+	req.setRequestHeader('Content-Type', 'application/json');
+	// req.onload = function(oEvent) {
+	// 	// console.log('weraldfjk');
+	// };
 
-	// $.ajax({
-	// 	method: 'POST',
-	// 	url: 'http://localhost:6969',
-	// 	data: {
-	// 		photo: dataURL
-	// 	}
-	// });
+	req.send(JSON.stringify(postThis));
+	// console.log(inc);
+	// console.log(req.readyState);
 
-	req.send(dataURL);
-	// req.send(dataURL);
 
+	// while(inc<1) {}
+
+	// req.end();
 
 	// // janky temporary fix -- create link and have script "click" it to download image of canvas at current state
 	// var thefilename = 'frame.png'
