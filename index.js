@@ -40,7 +40,7 @@ function exportAnimation(){
 	animation.continuous = false;
 	
 	// TODO: set desired number of frames variable somewhere (also framerate?)
-	var howManyFrames = 300; // NOTE -- keep this below 10,000 for now (see: save-frame.js on server side)
+	var howManyFrames = 600; // NOTE -- keep this below 10,000 for now (see: save-frame.js on server side)
 
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
 	stepper(animation, howManyFrames);
@@ -50,9 +50,11 @@ function exportAnimation(){
 **** execute function
 ******/
 
-function boomBoom(toVid = false){
+function boomBoom(toVid = true){
 	console.log('boom boom we got some room');
 	if(toVid == true){
+		// TODO -- clear output folder here before exporting new frames
+		// TODO -- consider fixing canvas size in "export mode" to prevent having to convert / crop in ffpmeg?
 		exportAnimation();
 	}
 	else{
