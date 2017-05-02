@@ -9,7 +9,7 @@ function exportFrame(frame, i){
 	// var theFileName = 'frame' + i + '.png';
 
 	var req = new XMLHttpRequest();
-	req.open("POST", 'http://localhost:6969', true);
+	req.open("POST", 'http://localhost:6969', false);
 	req.setRequestHeader('Content-Type', 'application/json');
 	// req.onload = function(oEvent) {
 	// 	// console.log('weraldfjk');

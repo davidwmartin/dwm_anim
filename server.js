@@ -21,7 +21,7 @@ var saveFrame = require('./modules/save-frame.js');
 var port = 6969;
 
 var server = http.createServer(function(request, response){
-	// response.writeHead(200, {"Content-Type": "text/html"});
+
 	console.log('mmm connection');
 
 
@@ -35,6 +35,8 @@ var server = http.createServer(function(request, response){
     }).on('end', function() {
       reqComplete = Buffer.concat(reqComplete).toString();
       saveFrame(reqComplete);
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.end();
     });
   }
   // else serve the site -- currently assuming single entry point. swap animations by changing what animation object is required in index.js

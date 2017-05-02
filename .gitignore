@@ -1,4 +1,5 @@
 node_modules/
+output/
 animations/
 !animations/sample.js
 serve/bundle.js
