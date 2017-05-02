@@ -38,9 +38,11 @@ function exportAnimation(){
 	console.log('called exportAnimation()');
 	// indicate that this is not a continous animation (which would be iterated using window.requestAnimationFrame)
 	animation.continuous = false;
-	// pass the animation's draw function and the number of frames you want to export to the manual stepper
+	
 	// TODO: set desired number of frames variable somewhere (also framerate?)
-	var howManyFrames = 100;
+	var howManyFrames = 300; // NOTE -- keep this below 10,000 for now (see: save-frame.js on server side)
+
+	// pass the animation's draw function and the number of frames you want to export to the manual stepper
 	stepper(animation, howManyFrames);
 }
 
@@ -48,7 +50,7 @@ function exportAnimation(){
 **** execute function
 ******/
 
-function boomBoom(toVid = true){
+function boomBoom(toVid = false){
 	console.log('boom boom we got some room');
 	if(toVid == true){
 		exportAnimation();

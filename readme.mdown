@@ -17,6 +17,19 @@ Now you have a server running on port 6969
 Load the page with a browser and the animation gets triggered. 
 
 
+#### "Live" / "Sketch" mode
+
+Start server as normal, open standard browser, make sure var toVid is set to false when animation kicks off. Edit in browser to your heart's content.
+
+#### "Export" mode
+
+Start server, make sure toVid = true when you hit page (likely w/headless browser in the future). This creates all your frames in output/
+
+Then run ffmpeg or similar. Basic ffmpeg command: 
+
+	ffmpeg -r 30 -i frame%04d.png -crf 25 film.mp4
+
+
 ## Started Here: 
 
 Starting off tutorial here: https://hackernoon.com/creative-coding-basics-4d623af1c647
@@ -89,5 +102,6 @@ TODO:
 	- manipulate shapes over image BG, style via css image filters, do trippy ish. 
 		- tunnel.psd (caitlin's neighborhood) -- animate triangles, changing sizes
 		- trees-have-eyes.psd (mesa peak) -- squares generating out in swarms like leaves
+* abstract laser-soundwaves -- oscillate y value on amplitude of sound source or something, x by time
 
 
