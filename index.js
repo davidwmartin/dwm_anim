@@ -40,7 +40,7 @@ function exportAnimation(){
 	animation.continuous = false;
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
 	// TODO: set desired number of frames variable somewhere (also framerate?)
-	var howManyFrames = 1;
+	var howManyFrames = 5;
 	stepper(animation, howManyFrames);
 }
 

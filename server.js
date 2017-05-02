@@ -17,6 +17,8 @@ var saveFrame = require('./modules/save-frame.js');
 // Simple Tutorial: https://www.sitepoint.com/creating-a-http-server-in-node-js/ 
 // stackoverflow help: http://stackoverflow.com/questions/16333790/node-js-quick-file-server-static-files-over-http
 
+var frames = [];
+
 var port = 6969;
 
 var server = http.createServer(function(request, response){
@@ -30,19 +32,14 @@ var server = http.createServer(function(request, response){
   if (request.method == 'POST'){
     // var b;
     request.on('data', function(data){
-      // var imgBuffer = {}
-      // imgBuffer = new Buffer('buffer', data);
-      // console.log(data);
-      // return imgBuffer;
-      b = new Buffer(data, 'base64');
-      // fs.createWriteStream('out.png').pipe(data);
       
-      saveFrame(b);
+      b = new Buffer(data, 'base64');
+      frames.push(b.toString());
 
     });
-    // console.log(frame);
-    // saveFrame(frame);
-    response.end();
+    response.end(function(){
+      console.log(frames.length);
+    });
   }
   else {
   	var filePath = '.' + request.url;
