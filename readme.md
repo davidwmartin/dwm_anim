@@ -50,23 +50,7 @@ Few parts:
 		- animation object, from an animation in "animations" directory -- see "animations/sample.js" for what this looks like
 			- (via animation object) animations helper-functions (manifest located at anim_lib/lib.js)
 
-
-## Record to video
-
-#### Overviews
-- http://wesbos.com/html5-canvas-websockets-nodejs/
-- https://blog.animatron.com/2014/01/22/how-we-render-animated-content-from-html5-canvas/
-- https://web.archive.org/web/20120126022742/http://www.ultramegatech.com:80/blog/2010/09/record-html-canvas-animations-to-video/
-- GIF
-	- http://techslides.com/make-animated-gifs-from-videos-with-html5
-
-#### Related
-- [node ffmpeg](https://www.npmjs.com/package/ffmpeg)
-- [node phantom](https://github.com/alexscheelmeyer/node-phantom)
-	- https://github.com/alexscheelmeyer/node-phantom/blob/master/test/pageevaluate.js
-
-
-## Library build
+## Goals / Prelim Stuff I haven't edited yet
 
 ### Application Framework
 
