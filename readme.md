@@ -50,21 +50,14 @@ Few parts:
 		- animation object, from an animation in "animations" directory -- see "animations/sample.js" for what this looks like
 			- (via animation object) animations helper-functions (manifest located at anim_lib/lib.js)
 
-## Goals / Prelim Stuff I haven't edited yet
+## TODO: 
 
-### Application Framework
+### Framework / Technical
 
-General goal is a minimal html canvas animation library to support two (maybe three) use cases:
+- allow user to set frame size of canvas when in export mode
+- global config object?
 
-1. "dev" / easy in-browser work, with simple server, file watching, etc. For creating animations and exploring possibilities. 
-2. "export" / create video -- hit server with headless browser, capture contents of canvas on each frame iteration, export to ffmpeg or similar for turning into a video.
-3. (future) -- "publish" -- easily export self-contained animations for use on websites
-
-I want to roll-it-myself as much as possible, for greater control over the process, greater extensibility and modularity as I develop this out, and as a learning experience.
-
-### Animation library / helper functions
-
-TODO: 
+### Animation Helper Functions
 
 * utility
 	- canvas creation function

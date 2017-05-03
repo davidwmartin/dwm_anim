@@ -36,3 +36,14 @@ Starting off tutorial here: https://hackernoon.com/creative-coding-basics-4d623a
 - [node ffmpeg](https://www.npmjs.com/package/ffmpeg)
 - [node phantom](https://github.com/alexscheelmeyer/node-phantom)
 	- https://github.com/alexscheelmeyer/node-phantom/blob/master/test/pageevaluate.js
+
+
+## Framework Goals (mostly achieved)
+
+General goal is a minimal html canvas animation library to support two (maybe three) use cases:
+
+1. "dev" / easy in-browser work, with simple server, file watching, etc. For creating animations and exploring possibilities. 
+2. "export" / create video -- hit server with headless browser, capture contents of canvas on each frame iteration, export to ffmpeg or similar for turning into a video.
+3. (future) -- "publish" -- easily export self-contained animations for use on websites
+
+I want to roll-it-myself as much as possible, for greater control over the process, greater extensibility and modularity as I develop this out, and as a learning experience.
