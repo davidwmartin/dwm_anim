@@ -6,9 +6,10 @@ var stepper = require('./modules/stepper'),
 		animation = require('./animations/test.js');
 
 
-// When window loads, get errything started
+// When window loads, get errything started -- if you want to be in export mode, set "toVid" to true
 console.log('index.js loaded');
-window.addEventListener("load", boomBoom());
+var toVid = false;
+window.addEventListener("load", boomBoom(toVid));
 
 
 
@@ -50,7 +51,7 @@ function exportAnimation(){
 **** execute function
 ******/
 
-function boomBoom(toVid = true){
+function boomBoom(toVid){
 	console.log('boom boom we got some room');
 	if(toVid == true){
 		// TODO -- clear output folder here before exporting new frames
