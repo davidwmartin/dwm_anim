@@ -23,9 +23,13 @@ Load the page with a browser and the animation kicks off.
 
 ### "Live" / "Sketch" mode
 
+View canvas in standard browser as a webpage, for working on your animations. 
+
 Start server as normal, open standard browser, make sure var toVid is set to false when animation kicks off. Edit in browser to your heart's content.
 
 ### "Export" mode
+
+Open page, step through preset number of frames, saving each one, with the goal of concatenating those into a video file.
 
 Start server, make sure toVid = true when you hit page (likely w/headless browser in the future). This creates all your frames in "output" directory
 
@@ -56,6 +60,7 @@ Few parts:
 
 - allow user to set frame size of canvas when in export mode
 - global config object?
+- currently: if canvas size is larger than the window, canvas background won't fill the whole canvas (stops at window boundaries) -- workaround is to zoom out
 
 ### Animation Helper Functions
 
@@ -79,3 +84,10 @@ Few parts:
 		- more complex movements like "bounce", "continuous rain", etc 
 	- oscillating (have some predefined movement paths?)
 * particle helper? easily generate an indefinite number of the above
+* color functions and color transformations
+
+* Comparison functions
+	- which is bigger? 
+	- dist? (audit)
+* "GRAVITY" / "attraction" function -- move a thing towards another thing, more or less quickly
+

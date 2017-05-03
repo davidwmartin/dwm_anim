@@ -3,12 +3,13 @@
 ******/
 
 var stepper = require('./modules/stepper'),
-		animation = require('./animations/test.js');
+		animation = require('./animations/particle-8.js');
 
 
-// When window loads, get errything started -- if you want to be in export mode, set "toVid" to true
+// When window loads, get errything started
 console.log('index.js loaded');
-var toVid = false;
+var toVid = false; // uncomment for export
+var howManyFrames = 600; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 
@@ -39,9 +40,6 @@ function exportAnimation(){
 	console.log('called exportAnimation()');
 	// indicate that this is not a continous animation (which would be iterated using window.requestAnimationFrame)
 	animation.continuous = false;
-	
-	// TODO: set desired number of frames variable somewhere (also framerate?)
-	var howManyFrames = 600; // NOTE -- keep this below 10,000 for now (see: save-frame.js on server side)
 
 	// pass the animation's draw function and the number of frames you want to export to the manual stepper
 	stepper(animation, howManyFrames);
@@ -51,7 +49,7 @@ function exportAnimation(){
 **** execute function
 ******/
 
-function boomBoom(toVid){
+function boomBoom(toVid = false){
 	console.log('boom boom we got some room');
 	if(toVid == true){
 		// TODO -- clear output folder here before exporting new frames
