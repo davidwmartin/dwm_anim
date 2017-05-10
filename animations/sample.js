@@ -12,6 +12,7 @@ var animation = module.exports = {
 // initial setup stuff that shouldn't get looped every time
 function setupAnimation(){
 	// create canvas
+	var ctx = lib.canvas.create('canvas1');
 }
 
 

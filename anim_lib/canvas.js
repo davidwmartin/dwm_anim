@@ -23,8 +23,8 @@ function resize(){
 	var c = document.getElementsByTagName('canvas');
 	var w = window.innerWidth;
 	var h = window.innerHeight;
-	// var w = 990;
-	// var h = 660;
+	// var w = 600;
+	// var h = 600;
 	for(var i = 0; i < c.length; i++) {
 		// set actual width and height of each canvas
 		c[i].width = w;

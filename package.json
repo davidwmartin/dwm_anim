@@ -26,6 +26,7 @@
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
     "babel-preset-es2015": "^6.24.1",
+    "dwmframe": "git+https://github.com/davidwmartin/dwmframe.git",
     "html-loader": "^0.4.5",
     "node-base64-image": "^1.0.3",
     "request": "^2.81.0",

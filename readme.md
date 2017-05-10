@@ -37,6 +37,9 @@ Then run ffmpeg or similar. Working ffmpeg command (run from within output direc
 
 	ffmpeg -y -i frame%04d.png -c:v libx264 -pix_fmt yuv420p -preset:v slow -profile:v baseline -crf 23 film.m4v
 
+
+<!-- ffmpeg -framerate 30 -y -i frame%04d.png -c:v libx264 -pix_fmt yuv420p -preset:v slow -profile:v baseline -crf 23 film.m4v -->
+
 <!-- TODO:  audit / customize above command. couldn't get it to work for the longest time, I think the kicker was the '-pix_fmt yuv420p' option but I have NOT yet tested that-->
 
 ## Overview

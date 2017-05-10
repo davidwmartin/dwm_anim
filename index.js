@@ -3,13 +3,13 @@
 ******/
 
 var stepper = require('./modules/stepper'),
-		animation = require('./animations/particle-8.js');
+		animation = require('./animations/lindsay.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
 var toVid = false; // uncomment for export
-var howManyFrames = 600; // if toVid = true
+var howManyFrames = 900; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 
