@@ -18,7 +18,7 @@ shapes.Shape = function(startX, startY, width, height){
 }
 
 shapes.Polygon = function(startX, startY, width, height, sides){
-	var thisPoly = new this.Shape(startX, startY, width, height);
+	var thisPoly = new shapes.Shape(startX, startY, width, height);
 	thisPoly.type = "polygon";
 	thisPoly.sides = sides;
 	thisPoly.draw = function(ctx, poly){
@@ -41,7 +41,7 @@ shapes.Polygon = function(startX, startY, width, height, sides){
 }
 
 shapes.Circle = function(startX, startY, width){
-	var thisCircle = new this.Shape(startX, startY, width);
+	var thisCircle = new shapes.Shape(startX, startY, width);
 	thisCircle.type = "circle";
 
 	thisCircle.draw = function(ctx, circ){

@@ -47,18 +47,23 @@ return 'rgba('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(g),0,255)+', '+c
  }
 };
 
-u.background = function background(context, r, g, b, a){
- if (g == undefined) {
- context.fillStyle = u.rgb(r, r, r);
- } else if (b == undefined && a == undefined) {
-  context.fillStyle = u.rgba(r, r, r, g);
- } else if (a == undefined) {
-  context.fillStyle = u.rgb(r, g, b);
- } else {
- context.fillStyle = u.rgba(r, g, b, a);
- }
- // TODO -- better solution for w and h here
- context.fillRect(0, 0, window.innerWidth, window.innerHeight);
+u.background = function background(ctx, r, g, b, a){
+  // TODO -- what exactly are "save" and "restore" doing here? -- had to add them so the ctx.fillStyle here doesn't override another one declared in setup loop for shapes -- other solution is to make fill and stroke a property of the objects...
+  ctx.save();
+  ctx.beginPath();
+  if (g == undefined) {
+  ctx.fillStyle = u.rgb(r, r, r);
+  } else if (b == undefined && a == undefined) {
+  ctx.fillStyle = u.rgba(r, r, r, g);
+  } else if (a == undefined) {
+  ctx.fillStyle = u.rgb(r, g, b);
+  } else {
+  ctx.fillStyle = u.rgba(r, g, b, a);
+  }
+  // TODO -- better solution for w and h here
+  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.closePath();
+  ctx.restore();
 };
 
 // get distance between two sets of x,y  coordinates
