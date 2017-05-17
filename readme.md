@@ -2,9 +2,7 @@
 
 Basic framework for working with HTML5 Canvas / javascript animations. See section "Library Build" for more info. 
 
-Rough implementation, still sketching out ideas, but it is working at this point (yay!). Though I have not tested on anything but my own standard setup. 
-
-This is a more technical document. For the creative side see js-art.md
+**Very rough implementation**, still sketching out ideas, but it is working at this point (yay!). Though I have not tested on anything but my own standard setup. 
 
 ## Usage
 
@@ -68,29 +66,28 @@ Few parts:
 ### Animation Helper Functions
 
 * utility
-	- canvas creation function
-	- info about size of window (w,h, changes on page resize)
-	- animate loop function
-		- variable frame rate?
-		- options for "trails" / level of opacity of frame BG
 	- calculate distance between two objects
 		- can this handle "collision detection" as well?
 	- oscillators
+
 * shapes (objects to describe, and a function to build them)
 	- polygons (indefinite sides)
-		- square, rectangle
-		- triangle
-	- circle / ellipse
 	- solid & stroke versions of each
+
 * movement functions
 	- linear
 		- more complex movements like "bounce", "continuous rain", etc 
 	- oscillating (have some predefined movement paths?)
-* particle helper? easily generate an indefinite number of the above
+	- easing functions? 
+		- https://www.kirupa.com/html5/animating_with_easing_functions_in_javascript.htm
+
+* particle cloud - easily generate an indefinite number of shapes / particles
+
 * color functions and color transformations
 
 * Comparison functions
-	- which is bigger? 
+	- which is bigger?
 	- dist? (audit)
+
 * "GRAVITY" / "attraction" function -- move a thing towards another thing, more or less quickly
 

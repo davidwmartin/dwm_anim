@@ -1,84 +1,58 @@
-var s = module.exports = {};
+/***
+** Lets Make Shapes! Weeee
+***/
 
-// TODO -- consider assigning all these methods to canvasRenderingContext2d.prototype to make using them less verbose and remove the need to pass a context
+var shapes = module.exports = {};
 
-s.line = function (context, x1, y1, x2, y2){
- context.beginPath();
- context.moveTo(x1,y1);
- context.lineTo(x2,y2);
- context.stroke();
- context.closePath();
-};
+// basic strategy is this: 
+// start w/generic Shape (only position and size) -- other constructors instantiate a shape and add their own distinct classes (e.g. # of sides for a polygon)
+// each specific constructor also defines a draw function to be called in an animation loop
 
+// TODO -- consider "radius" instead of w, h
+shapes.Shape = function(startX, startY, width, height){
+	this.x = startX;
+	this.y = startY;
+	this.w = width;
+	if (height == undefined) this.h = width;
+	else this.h = height;
+}
 
-// Shape constructor -- takes context (ugh -- TODO: fix this), and start position, creates object with position and properties which are functions that draw different types of shape, based on what type is passed into makeShape function below.
+shapes.Polygon = function(startX, startY, width, height, sides){
+	var thisPoly = new this.Shape(startX, startY, width, height);
+	thisPoly.type = "polygon";
+	thisPoly.sides = sides;
+	thisPoly.draw = function(ctx, poly){
+		if (ctx !== undefined){
+			if (sides < 3) return;
+	    ctx.beginPath();
 
-// TODO -- different fill and stroke for different shapes
+	    // from @radarboy3000 medium tutorial: 
+			ctx.moveTo (poly.x +  poly.w/2 * Math.cos(0), poly.y +  poly.w/2 *  Math.sin(0));
+			for (var i = 1; i <= poly.sides; i += 1) {
+			  ctx.lineTo (poly.x + poly.w/2 * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.w/2 * Math.sin(i * 2 * Math.PI / poly.sides));
+			}
+	    ctx.closePath();
+	    ctx.fill();
+	    ctx.stroke();
+	  }
+	};
 
-// TODO -- some sort of z-indexing / stacking ability? or just handle that via draw order?
+	return thisPoly;
+}
 
-function Shape(ctx,_x,_y){
-	this.center_x = _x;
-	this.center_y = _y;
-	this.ellipse = function(_width, _height){
+shapes.Circle = function(startX, startY, width){
+	var thisCircle = new this.Shape(startX, startY, width);
+	thisCircle.type = "circle";
 
-		if (_height == undefined){ 
-			height = _width 
-		}	else { height = _height }
-
+	thisCircle.draw = function(ctx, circ){
+		if (ctx !== undefined){
 		ctx.beginPath();
-		// for(var i=0; i<Math.PI*2; i+=Math.PI/16) {
-		// ctx.lineTo(this.center_x+(Math.cos(i)*_width/2), this.center_y+(Math.sin(i)*height/2));
-		// }
-		ctx.ellipse(this.center_x, this.center_y, _width, height, 0, 0, Math.PI*2, true);
+		ctx.ellipse(circ.x, circ.y, circ.w, circ.h, 0, 0, Math.PI*2, true);
+		ctx.closePath();
 		ctx.fill();
 		ctx.stroke();
-		ctx.closePath();
+		}
 	};
-	this.rect = function(_width, _height){
 
-		if (_height == undefined){ 
-			height = _width 
-		}	else { height = _height }
-
-		ctx.beginPath();
-		ctx.fillRect(this.center_x, this.center_y, _width, height);
-		ctx.closePath();
-
-	}
+	return thisCircle;
 }
-
-// TODO -- still super annoying to have to pass ctx in
-s.makeShape = function(ctx, _x, _y, _type, _width, _height){
-
-	var shape = new Shape(ctx, _x, _y);
-	// TODO -- better way of doing this w/predefined objects from below
-	if (_type == "ellipse"){
-		shape.ellipse(_width, _height);
-	}
-	else if (_type == "rectangle"){
-		shape.rect(_width, _height);
-	}
-
-}
-
-// below should "extend" shape object somehow
-// var circle = {
-// 	radius: 50
-// 	// ...
-// }
-// var ellipse = {
-// 	width: 100,
-// 	height: 50
-// }
-// var regPolygon = {
-// 	radius: 50,
-// 	sides: 5
-// }
-// var quad = {
-// 	width: 50,
-// 	height: 80
-// }
-
-
-

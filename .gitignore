@@ -3,3 +3,4 @@ output/
 animations/
 !animations/sample.js
 serve/bundle.js
+doc/

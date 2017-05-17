@@ -61,21 +61,6 @@ u.background = function background(context, r, g, b, a){
  context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 };
 
-/***
-** Movement Functions
-***/
-
-u.bounce = function (num, min, max, sz) {
-  if (sz === undefined) {
-    sz = 0;
-  }
-  if (num >= max - sz/2 || num - sz/2 <= min ) {
-    return 1;
-  } else {
-    return 0;
-  }
-}
-
 // get distance between two sets of x,y  coordinates
 u.dist = function dist(x1, y1, x2, y2) {
  x2-=x1; y2-=y1;
