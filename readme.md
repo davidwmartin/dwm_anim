@@ -80,6 +80,8 @@ Few parts:
 	- oscillating (have some predefined movement paths?)
 	- easing functions? 
 		- https://www.kirupa.com/html5/animating_with_easing_functions_in_javascript.htm
+		- https://github.com/gre/bezier-easing
+		- http://robertpenner.com/easing/
 
 * particle cloud - easily generate an indefinite number of shapes / particles
 

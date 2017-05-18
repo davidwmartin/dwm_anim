@@ -54,3 +54,7 @@ motion.moveOsc = function(object, xMovement, yMovement, yCos){
 	}
 
 }
+
+
+
+
