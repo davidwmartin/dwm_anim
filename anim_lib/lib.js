@@ -8,5 +8,9 @@ dwmanim.utility = require('./utility');
 dwmanim.shapes = require('./shapes');
 dwmanim.grid = require('./grid');
 dwmanim.motion = require('./motion');
+dwmanim.glitcher = require('./glitcher');
+dwmanim.mic = require('./mic');
+// dwmanim.mouse = require('./mouse');
+// dwmanim.image = require('./images');
 
 module.exports = dwmanim;

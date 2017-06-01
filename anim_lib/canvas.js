@@ -21,10 +21,10 @@ canvas.create = function create(canvasName){
 function resize(){
 	console.log('resize function call');
 	var c = document.getElementsByTagName('canvas');
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	// var w = 600;
-	// var h = 600;
+	// var w = window.innerWidth;
+	// var h = window.innerHeight;
+	var w = 600;
+	var h = 800;
 	for(var i = 0; i < c.length; i++) {
 		// set actual width and height of each canvas
 		c[i].width = w;

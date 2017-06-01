@@ -6,7 +6,8 @@ var animation = module.exports = {
 	name: 'sample',
 	continuous: true, 
 	setup: setupAnimation,
-	draw: drawFrame
+	draw: drawFrame, 
+	persist: {} // TODO -- utilize persist object for anything that needs to be persisted between setup and draw functions while animation runs (context, currenct canvas, etc)
 }
 
 // initial setup stuff that shouldn't get looped every time
@@ -23,4 +24,7 @@ function drawFrame(){
 	if (animation.continuous == true){
 		window.requestAnimationFrame(animation.draw);
 	}
+
+	// TODO -- need to return current canvas for export function to work -- not ideal...
+	// return canvas;
 }

@@ -44,15 +44,44 @@ shapes.Circle = function(startX, startY, width){
 	var thisCircle = new shapes.Shape(startX, startY, width);
 	thisCircle.type = "circle";
 
-	thisCircle.draw = function(ctx, circ){
+	thisCircle.draw = function(ctx){
 		if (ctx !== undefined){
 		ctx.beginPath();
-		ctx.ellipse(circ.x, circ.y, circ.w, circ.h, 0, 0, Math.PI*2, true);
+		ctx.ellipse(this.x, this.y, this.w, this.h, 0, 0, Math.PI*2, true);
 		ctx.closePath();
 		ctx.fill();
-		ctx.stroke();
+		// ctx.stroke();
 		}
 	};
 
 	return thisCircle;
 }
+
+
+
+// draws a line between two shapes
+shapes.connect = function (ctx, object1, object2){
+	var x1 = object1.x;
+	var y1 = object1.y;
+	var x2 = object2.x;
+	var y2 = object2.y;
+
+	ctx.beginPath();
+	ctx.moveTo(x1,y1);
+	ctx.lineTo(x2,y2);
+	ctx.stroke();
+	ctx.closePath();
+
+}; 
+
+shapes.color = function(object, fill, stroke)
+{
+	object.fill = fill;
+	if(stroke == undefined){
+		object.stroke = fill;
+	} else{
+		object.stroke = stroke;
+	}
+}
+// TODO -- fill / stoke style in draw functions?
+

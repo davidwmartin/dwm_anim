@@ -28,7 +28,7 @@ var server = http.createServer(function(request, response){
   // if animation frontend POSTs data (b64 png "frames"), export / save them to disk
   if (request.method == 'POST'){
     console.log('new POST');
-    ////////// 
+    ////
     var reqComplete = [];
     request.on('data', function(chunk) {
       reqComplete.push(chunk);

@@ -3,15 +3,14 @@
 ******/
 
 var stepper = require('./modules/stepper'),
-		animation = require('./animations/lindsay.js');
+		animation = require('./animations/particle-gravity.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
-var toVid = false; // uncomment for export
-var howManyFrames = 900; // if toVid = true
+var toVid = true; // uncomment for export
+var howManyFrames = 750; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
-
 
 
 /******
@@ -23,12 +22,13 @@ window.addEventListener("load", boomBoom(toVid));
 // lengthy discussion: http://creativejs.com/resources/requestanimationframe/
 // TODO: add rAF polyfill for super old browsers
 
-// NOTE -- this strategy will require webpack or browserify or something similar so that I can utilize the above required files in a browser context
-
 function playAnimation(){
 	console.log('called playAnimation()');
 	window.requestAnimationFrame(animation.setup);
 	// TODO -- this seems jank -- not sure why I have to call window.rAF on the setup function, but calling just animation.setup() causes the createCanvas function to fail when it can't find the body element 
+	
+	// TODO -- call the draw function w/in a given animation's setup function? would help with scoping, async issues, etc. doing it in ---/tp/tp-exp.js
+
 	window.requestAnimationFrame(animation.draw);
 }
 

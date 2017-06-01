@@ -67,7 +67,9 @@ u.background = function background(ctx, r, g, b, a){
 };
 
 // get distance between two sets of x,y  coordinates
+// TODO -- objDist that assumes two objects, each w/x and y property?
 u.dist = function dist(x1, y1, x2, y2) {
  x2-=x1; y2-=y1;
  return Math.sqrt((x2*x2) + (y2*y2));
 }
+

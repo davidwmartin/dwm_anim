@@ -9,15 +9,15 @@ var canvas = require('./canvas');// TODO -- a bit ugly that I have to require th
 var motion = module.exports = {}
 
 // Currently -- the below methods require that the object passed in have dx and dy properties
-motion.addMotion = function(shape, dx, dy, angle, oscSpeed){
-	shape.startx = shape.x;
-	shape.starty = shape.y;
-	shape.dx = dx;
-	shape.dy = dy;
+motion.addMotion = function(object, dx, dy, angle, oscSpeed){
+	object.startx = object.x;
+	object.starty = object.y;
+	object.dx = dx;
+	object.dy = dy;
 
 	// TODO -- split moveOsc props below into separate addMotionOsc function? 
-	shape.angle = angle;
-	if(oscSpeed !== undefined) shape.oscSpeed = oscSpeed; // optional oscSpeed prop -- if you intend to move via oscillator
+	object.angle = angle;
+	if(oscSpeed !== undefined) object.oscSpeed = oscSpeed; // optional oscSpeed prop -- if you intend to move via oscillator
 }
 
 
