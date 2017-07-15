@@ -20,11 +20,11 @@ function setupAnimation(){
 // draw function for this animation
 function drawFrame(){
 
-	// if continuous, keep looping via window.rAF
+	// if continuous, keep looping via window.rAF, otherwise return current canvas for saving
 	if (animation.continuous == true){
 		window.requestAnimationFrame(animation.draw);
+	} else {
+		return canvas;
 	}
 
-	// TODO -- need to return current canvas for export function to work -- not ideal...
-	// return canvas;
 }

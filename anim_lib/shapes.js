@@ -21,25 +21,26 @@ shapes.Polygon = function(startX, startY, width, height, sides){
 	var thisPoly = new shapes.Shape(startX, startY, width, height);
 	thisPoly.type = "polygon";
 	thisPoly.sides = sides;
-	thisPoly.draw = function(ctx, poly){
+	thisPoly.draw = function(ctx){
 		if (ctx !== undefined){
 			if (sides < 3) return;
 	    ctx.beginPath();
 
 	    // from @radarboy3000 medium tutorial: 
-			ctx.moveTo (poly.x +  poly.w/2 * Math.cos(0), poly.y +  poly.w/2 *  Math.sin(0));
-			for (var i = 1; i <= poly.sides; i += 1) {
-			  ctx.lineTo (poly.x + poly.w/2 * Math.cos(i * 2 * Math.PI / poly.sides), poly.y + poly.w/2 * Math.sin(i * 2 * Math.PI / poly.sides));
+			ctx.moveTo (this.x +  this.w/2 * Math.cos(0), this.y +  this.w/2 *  Math.sin(0));
+			for (var i = 1; i <= this.sides; i += 1) {
+			  ctx.lineTo (this.x + this.w/2 * Math.cos(i * 2 * Math.PI / this.sides), this.y + this.w/2 * Math.sin(i * 2 * Math.PI / this.sides));
 			}
 	    ctx.closePath();
 	    ctx.fill();
-	    ctx.stroke();
+	    // ctx.stroke();
 	  }
 	};
 
 	return thisPoly;
 }
 
+// TODO -- generalize to "ellipse"?
 shapes.Circle = function(startX, startY, width){
 	var thisCircle = new shapes.Shape(startX, startY, width);
 	thisCircle.type = "circle";
