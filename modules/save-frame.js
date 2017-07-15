@@ -32,5 +32,7 @@ function pad(n) {
 	}
 	else if (n < 1000) {
 		return "0" + n;
+	} else {
+		return n;
 	}
 }

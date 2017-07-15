@@ -3,13 +3,13 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/particle-gravity-exp.js');
+	animation = require('./animations/statue-raintest.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
-var toVid = true; // uncomment for export
-var howManyFrames = 10; // if toVid = true
+var toVid = false; // uncomment for export
+var howManyFrames = 600; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 
@@ -23,21 +23,32 @@ window.addEventListener("load", boomBoom(toVid));
 
 function boomBoom(toVid){
 	console.log('fired animation trigger from index.js');
-	animation.setup();
+
 
 	if (toVid == true){
-		
+
 		animation.continuous = false;
 
-		for(j = 0; j < howManyFrames; j++) {
-		
-			// drawFrame should return current canvas object
-			// TODO -- this is brittle, I often forget and remove the return canvas; line from the animation draw functions. Need a better way of doing this. Also, this won't work when multiple canvases are in play...
-			var _frame = animation.draw();
-			exportFrame(_frame, j);
+		// animation.setup();
+		window.requestAnimationFrame(animation.setup);
+
+		// TODO -- would prefer not to have to the setTimeout method but it seems necessary when dealing with images (otherwise draw function runs before images are fully loaded, and nothing happens)
+		setTimeout(drawExport, 3000);
+
+		function drawExport() {
+			for(f = 0; f < howManyFrames; f++) {
+				
+				// drawFrame should return current canvas object
+				// TODO -- this is brittle, I often forget and remove the return canvas from animation.draw() -- Need a better way of doing this. Also, this won't work when multiple canvases are in play...
+				var _frame = animation.draw();
+
+				exportFrame(_frame, f);
+			}
 		}
 
-
+	} else{
+		// just run animation
+		window.requestAnimationFrame(animation.setup);
 	}
 
 }
