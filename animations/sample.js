@@ -14,6 +14,8 @@ var animation = module.exports = {
 function setupAnimation(){
 	// create canvas
 	var ctx = lib.canvas.create('canvas1');
+
+	window.requestAnimationFrame(animation.draw);
 }
 
 
