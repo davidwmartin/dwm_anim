@@ -3,7 +3,7 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/statue-raintest.js');
+	animation = require('./animations/photo-shapes-exp.js');
 
 
 // When window loads, get errything started

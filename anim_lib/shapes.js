@@ -13,6 +13,14 @@ shapes.Shape = function(startX, startY, width, height){
 	this.x = startX;
 	this.y = startY;
 	this.w = width;
+	this.color = function(fill, stroke){
+		this.fill = fill;
+		if(stroke == undefined){
+			this.stroke = fill;
+		} else{
+			this.stroke = stroke;
+		}
+	};
 	if (height == undefined) this.h = width;
 	else this.h = height;
 }
@@ -74,15 +82,3 @@ shapes.connect = function (ctx, object1, object2){
 	ctx.closePath();
 
 }; 
-
-shapes.color = function(object, fill, stroke)
-{
-	object.fill = fill;
-	if(stroke == undefined){
-		object.stroke = fill;
-	} else{
-		object.stroke = stroke;
-	}
-}
-// TODO -- fill / stoke style in draw functions?
-
