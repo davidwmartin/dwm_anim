@@ -5,7 +5,7 @@ var canvas = module.exports = {};
 // TODO -- need a way to manually set canvas size on creation.
 
 // call this, it cretes a canvas and returns it's context
-canvas.create = function create(canvasName){
+canvas.create = function create(canvasName, width, height){
 	var body = document.querySelector('body');
 	var canvas = document.createElement('canvas');
 	canvas.setAttribute('id', canvasName);
@@ -13,8 +13,21 @@ canvas.create = function create(canvasName){
 
 	var ctx = canvas.getContext('2d');
 	resize();
-	
-	window.addEventListener('resize', resize, false);
+
+	// if explicit width passed in, set fixed size canvas
+	if (width){
+		canvas.width = width;
+		if (height){
+			canvas.height = height;
+		} else{
+			// if no height passed in, make it a square
+			canvas.height = width;
+		}
+	} else {
+		// if no explicit width passed in, treat as "responsive" and resize when window is resized
+		resize();
+		window.addEventListener('resize', resize, false);
+	}
 
 	return ctx;
 }
@@ -24,8 +37,7 @@ function resize(){
 	var c = document.getElementsByTagName('canvas');
 	var w = window.innerWidth;
 	var h = window.innerHeight;
-	// var w = 600;
-	// var h = 750;
+
 	for(var i = 0; i < c.length; i++) {
 		// set actual width and height of each canvas
 		c[i].width = w;
