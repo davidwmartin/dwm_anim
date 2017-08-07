@@ -1,49 +1,89 @@
 var canvas = module.exports = {};
 
-// Pretty much yoinked this from radarboy3000 -- https://hackernoon.com/creative-coding-basics-4d623af1c647
+// basic creation function inspired by radarboy3000 -- https://hackernoon.com/creative-coding-basics-4d623af1c647
 
-// TODO -- need a way to manually set canvas size on creation.
+/////creates a canvas and returns it's context
+// examples: 
+//1: create()
+//2: create('name')
+//3: create('name', false)
+//4: create('name', 400, 600)
+//5: create('name', false, 400, 600)
+canvas.create = function create(a,b,c,d){
 
-// call this, it cretes a canvas and returns it's context
-canvas.create = function create(canvasName, width, height){
-	var body = document.querySelector('body');
-	var canvas = document.createElement('canvas');
+	var canvasName, onScreen, canvas = document.createElement('canvas');
+
+	canvasName = a || "canvas";
 	canvas.setAttribute('id', canvasName);
-	body.appendChild(canvas);
+	onScreen = true;
 
-	var ctx = canvas.getContext('2d');
-	resize();
-
-	// if explicit width passed in, set fixed size canvas
-	if (width){
-		canvas.width = width;
-		if (height){
-			canvas.height = height;
-		} else{
-			// if no height passed in, make it a square
-			canvas.height = width;
-		}
-	} else {
-		// if no explicit width passed in, treat as "responsive" and resize when window is resized
-		resize();
-		window.addEventListener('resize', resize, false);
+	if (typeof b == 'boolean'){
+		onScreen = b;
 	}
 
+	if (c) {
+		// if at least 3 parameters, third is width:
+		canvas.width = c;
+		if (d){
+			// if 4 params, fourth is height
+			canvas.height = d;
+		} else{
+			// else height is width (if 3 params)
+			canvas.height = c;
+		}
+	} else{
+		// if no explicit width passed in (2 params or less), treat as "responsive" and resize when window is resized
+		resize(canvas);
+		window.addEventListener('resize', resize(canvas), false);
+	}
+
+	if (onScreen){
+		// if onScreen, add to body (else this is still available as a function on lib.canvas object -- see below)
+		this.addToBody(canvas);
+	}
+
+	// get and return context
+	var ctx = canvas.getContext('2d');
 	return ctx;
 }
 
-function resize(){
+
+// appends a canvas to the page body -- happens automatically unless you pass in "false" for "onScreen" argument in canvas creation function above
+canvas.addToBody = function(canvas){
+	var body = document.querySelector('body');
+	body.appendChild(canvas);
+}
+
+// takes an array of contexts, returns a single flattened canvas (for export)
+canvas.flatten = function(contexts){
+	// the first context in the array is the base
+	var base = contexts[0];
+	for (var i = 0; i < contexts.length - 1; i++) {
+		base.drawImage(contexts[i+1].canvas,0,0);
+	}
+	return base.canvas;
+}
+
+//// for compositing canvases
+// takes a base context, and an array of arrays where first element is context to be composited, and second is string of globalCompositeOperation value
+// e.g. composite(ctxBase, [[ctx1, 'source-over'], [ctx2, 'linear-burn']])
+canvas.composite = function(baseCtx, ctxToComposite){
+	var baseCtx = baseCtx;
+	for (var i = 0; i < ctxToComposite.length; i++) {
+		var comp = ctxToComposite[i];
+		baseCtx.globalCompositeOperation = comp[1];
+		// console.log(baseCtx);
+		baseCtx.drawImage(comp[0].canvas, 0, 0);
+	}
+}
+
+function resize(canvas){
 	console.log('resize function call');
-	var c = document.getElementsByTagName('canvas');
+
 	var w = window.innerWidth;
 	var h = window.innerHeight;
 
-	for(var i = 0; i < c.length; i++) {
-		// set actual width and height of each canvas
-		c[i].width = w;
-		c[i].height = h;
-	}
-	// update canvas object with width and height properties for use by animation functions
-	canvas.w = w;
-	canvas.h = h;
+	canvas.width = w;
+	canvas.height = h;
+
 }

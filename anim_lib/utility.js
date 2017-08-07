@@ -61,7 +61,7 @@ u.background = function background(ctx, r, g, b, a){
   ctx.fillStyle = u.rgba(r, g, b, a);
   }
   // TODO -- better solution for w and h here
-  ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+  ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.closePath();
   ctx.restore();
 };

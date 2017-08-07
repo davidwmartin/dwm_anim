@@ -28,15 +28,17 @@ motion.moveLinear = function(object){
 }
 
 // "bounce" -- linear + reverses direction if an object hits the edge of the canvas
-motion.moveBounce = function (object) {
+// TODO -- this doesn't seem to be working accurately -- object overlaps edges of canvas before bouncing
+motion.moveBounce = function (object,canvas) {
+	var canvas = canvas;
 	motion.moveLinear(object);
 	var rad = object.w/2;
 
-	if (object.x - rad <= 0 || object.x + rad >= canvas.w){
+	if (object.x - rad <= 0 || object.x + rad >= canvas.width){
 		object.dx *= -1;
 	}
 
-	if (object.y - rad <= 0 || object.y + rad >= canvas.h){
+	if (object.y - rad <= 0 || object.y + rad >= canvas.height){
 		object.dy *= -1;
 	}
 }
