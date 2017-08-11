@@ -30,12 +30,12 @@ function clamp(value, min, max){
 ** Color Functions
 ***/
 
-u.rgb = function rgb(r,g,b){
+u.rgb = function(r,g,b){
 	if (g == undefined) g = r;
 	if (b == undefined) b = r;
 	return 'rgb('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(g),0,255)+', '+clamp(Math.round(b),0,255)+')';
 }
-u.rgba = function rgba(r, g, b, a) {
+u.rgba = function(r, g, b, a) {
   if (g == undefined) {
    return 'rgb('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(r),0,255)+', '+clamp(Math.round(r),0,255)+')';
  } else if (b == undefined) {
@@ -47,7 +47,7 @@ return 'rgba('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(g),0,255)+', '+c
  }
 };
 
-u.background = function background(ctx, r, g, b, a){
+u.background = function(ctx, r, g, b, a){
   // TODO -- what exactly are "save" and "restore" doing here? -- had to add them so the ctx.fillStyle here doesn't override another one declared in setup loop for shapes -- other solution is to make fill and stroke a property of the objects...
   ctx.save();
   ctx.beginPath();
@@ -68,8 +68,16 @@ u.background = function background(ctx, r, g, b, a){
 
 // get distance between two sets of x,y  coordinates
 // TODO -- objDist that assumes two objects, each w/x and y property?
-u.dist = function dist(x1, y1, x2, y2) {
+u.dist = function(x1, y1, x2, y2) {
  x2-=x1; y2-=y1;
  return Math.sqrt((x2*x2) + (y2*y2));
+}
+
+
+// map one set of numbers to another
+u.map = function(num, inMin, inMax, outMin, outMax){
+
+   return ( num - inMin ) * ( outMax - outMin ) / ( inMax - inMin ) + outMin;
+
 }
 

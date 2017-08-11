@@ -18,21 +18,36 @@ canvas.create = function create(a,b,c,d){
 	onScreen = true;
 
 	if (typeof b == 'boolean'){
+		// if b arg is boolean, it's the onScreen arg
 		onScreen = b;
-	}
-
-	if (c) {
-		// if at least 3 parameters, third is width:
-		canvas.width = c;
-		if (d){
-			// if 4 params, fourth is height
-			canvas.height = d;
+		if (c) {
+			// if c arg, it's width
+			canvas.width = c;
+			if (d){
+				// if d arg, it's width
+				canvas.height = d;
+				
+			} else{
+				canvas.height = c;
+			}
 		} else{
-			// else height is width (if 3 params)
-			canvas.height = c;
+			// no explicit size, treat as responsive
+			resize(canvas);
+			window.addEventListener('resize', resize(canvas), false);
 		}
-	} else{
-		// if no explicit width passed in (2 params or less), treat as "responsive" and resize when window is resized
+
+	} else if (b){
+		// if b is not boolean but exists, it's width
+		canvas.width = b;
+		if (c){
+			// if c, it's height
+			canvas.height = c;
+		} else{
+			// if not, it's a square
+			canvas.height = b;
+		}
+	} else {
+		// no explicit size, treat as responsive
 		resize(canvas);
 		window.addEventListener('resize', resize(canvas), false);
 	}
