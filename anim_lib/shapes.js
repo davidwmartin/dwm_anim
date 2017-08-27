@@ -31,7 +31,7 @@ shapes.Polygon = function(startX, startY, width, height, sides, angle){
 	thisPoly.sides = sides;
 
 	// TODO -- implemented this for a specific animation, does it make sense to add here?
-	var angle = angle || 0;
+	var angle = thisPoly.angle = angle || 0;
 
 	thisPoly.draw = function(ctx){
 		if (ctx !== undefined){
@@ -44,9 +44,11 @@ shapes.Polygon = function(startX, startY, width, height, sides, angle){
 			for (var i = 1; i <= this.sides; i += 1) {
 			  ctx.lineTo (this.x + this.w/2 * Math.cos(i * 2 * Math.PI / this.sides + angle), this.y + this.h/2 * Math.sin(i * 2 * Math.PI / this.sides + angle));
 			}
-	    ctx.closePath();
+
 	    ctx.fill();
 	    ctx.stroke();
+
+	    ctx.closePath();
 	  }
 	};
 
@@ -62,9 +64,11 @@ shapes.Circle = function(startX, startY, width){
 		if (ctx !== undefined){
 		ctx.beginPath();
 		ctx.ellipse(this.x, this.y, this.w, this.w, 0, 0, Math.PI*2, true);
-		ctx.closePath();
-		ctx.fill();
+
+	  ctx.fill();
 		// ctx.stroke();
+
+		ctx.closePath();
 		}
 	};
 

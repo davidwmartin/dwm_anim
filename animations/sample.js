@@ -15,9 +15,7 @@ function setupAnimation(){
 	// create canvas
 	var ctx = animation.persist.ctx = lib.canvas.create('canvas1');
 
-	if (animation.continuous == true){
-		window.requestAnimationFrame(animation.draw);
-	}
+	window.requestAnimationFrame(animation.draw);
 }
 
 

@@ -3,13 +3,13 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/grid-overlay.js');
+	animation = require('./animations/spline.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
-var toVid = true; // uncomment for export
-var howManyFrames = 1600; // if toVid = true
+var toVid = false; // uncomment for export
+var howManyFrames = 1200; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 
@@ -39,7 +39,6 @@ function boomBoom(toVid){
 			for(f = 0; f < howManyFrames; f++) {
 				
 				// drawFrame should return current canvas object
-				// TODO -- this is brittle, I often forget and remove the return canvas from animation.draw() -- Need a better way of doing this. Also, this won't work when multiple canvases are in play...
 				var _frame = animation.draw();
 
 				exportFrame(_frame, f);
