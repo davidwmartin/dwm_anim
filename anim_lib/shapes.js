@@ -74,20 +74,3 @@ shapes.Circle = function(startX, startY, width){
 
 	return thisCircle;
 }
-
-
-
-// draws a line between two shapes
-shapes.connect = function (ctx, object1, object2){
-	var x1 = object1.x;
-	var y1 = object1.y;
-	var x2 = object2.x;
-	var y2 = object2.y;
-
-	ctx.beginPath();
-	ctx.moveTo(x1,y1);
-	ctx.lineTo(x2,y2);
-	ctx.stroke();
-	ctx.closePath();
-
-}; 
