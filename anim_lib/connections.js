@@ -29,10 +29,6 @@ c.spline = function(ctx, tPts, tension, thickness){
 	var numTPts = tPts.length;
 	var numCPts = cPts.length;
 
-	// draw through points and control points for visual debugging
-	// drawPoints(ctx, tPts);
-	// drawPoints(ctx, cPts);
-
 	// draw curve between points
 	ctx.beginPath();
 	ctx.moveTo(tPts[0].x, tPts[0].y);

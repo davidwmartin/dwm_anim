@@ -3,12 +3,12 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/spline-plant.js');
+	animation = require('./animations/spline/spline-img.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
-var toVid = true; // uncomment for export
+var toVid = false; // uncomment for export
 var howManyFrames = 1800; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 

@@ -92,6 +92,12 @@ canvas.composite = function(baseCtx, ctxToComposite){
 	}
 }
 
+canvas.clear = function(ctx){
+	ctx.beginPath();
+	ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
+	ctx.closePath();
+}
+
 function resize(canvas){
 	console.log('resize function call');
 
