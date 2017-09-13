@@ -33,20 +33,20 @@ shapes.Polygon = function(startX, startY, width, height, sides, angle){
 	// TODO -- implemented this for a specific animation, does it make sense to add here?
 	var angle = thisPoly.angle = angle || 0;
 
-	thisPoly.draw = function(ctx){
+	thisPoly.draw = function(ctx, fill = true, stroke = true){
 		if (ctx !== undefined){
 			if (sides < 3) return;
 	    ctx.beginPath();
 
 	    // from @radarboy3000 medium tutorial:
 	    // evenly distributes vertices around the Unit Circle, moving BACKWARDS
-			ctx.moveTo (this.x + this.w/2 * Math.cos(angle), this.y + this.h/2 * Math.sin(angle));
+			ctx.moveTo (this.x + this.w/2 * Math.cos(this.angle), this.y + this.h/2 * Math.sin(this.angle));
 			for (var i = 1; i <= this.sides; i += 1) {
-			  ctx.lineTo (this.x + this.w/2 * Math.cos(i * 2 * Math.PI / this.sides + angle), this.y + this.h/2 * Math.sin(i * 2 * Math.PI / this.sides + angle));
+			  ctx.lineTo (this.x + this.w/2 * Math.cos(i * 2 * Math.PI / this.sides + this.angle), this.y + this.h/2 * Math.sin(i * 2 * Math.PI / this.sides + this.angle));
 			}
 
-	    ctx.fill();
-	    ctx.stroke();
+	    if (fill) ctx.fill();
+	    if (stroke) ctx.stroke();
 
 	    ctx.closePath();
 	  }
@@ -60,15 +60,15 @@ shapes.Circle = function(startX, startY, width){
 	var thisCircle = new shapes.Shape(startX, startY, width);
 	thisCircle.type = "circle";
 
-	thisCircle.draw = function(ctx){
+	thisCircle.draw = function(ctx, fill = true, stroke = true){
 		if (ctx !== undefined){
-		ctx.beginPath();
-		ctx.ellipse(this.x, this.y, this.w, this.w, 0, 0, Math.PI*2, true);
+			ctx.beginPath();
+			ctx.ellipse(this.x, this.y, this.w, this.w, 0, 0, Math.PI*2, true);
 
-	  ctx.fill();
-		// ctx.stroke();
+		  if (fill) ctx.fill();
+		  if (stroke) ctx.stroke();
 
-		ctx.closePath();
+			ctx.closePath();
 		}
 	};
 

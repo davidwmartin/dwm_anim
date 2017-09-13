@@ -21,12 +21,13 @@ function setupAnimation(){
 
 // draw function for this animation
 function drawFrame(){
+	var ctx = animation.persist.ctx;
 
 	// if continuous, keep looping via window.rAF, otherwise return current canvas for saving
 	if (animation.continuous == true){
 		window.requestAnimationFrame(animation.draw);
 	} else {
-		return canvas;
+		return ctx.canvas;
 	}
 
 }
