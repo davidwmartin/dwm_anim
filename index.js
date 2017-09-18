@@ -3,13 +3,13 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/imagework/arielle-stars.js');
+	animation = require('./animations/imagework/portals.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
 var toVid = false; // uncomment for export
-var howManyFrames = 1600; // if toVid = true
+var howManyFrames = 1200; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 

@@ -47,8 +47,8 @@ return 'rgba('+clamp(Math.round(r),0,255)+', '+clamp(Math.round(g),0,255)+', '+c
  }
 };
 
+// TODO -- move to canvas module?
 u.background = function(ctx, r, g, b, a){
-  // TODO -- what exactly are "save" and "restore" doing here? -- had to add them so the ctx.fillStyle here doesn't override another one declared in setup loop for shapes -- other solution is to make fill and stroke a property of the objects...
   ctx.save();
   ctx.beginPath();
   if (g == undefined) {
@@ -60,7 +60,6 @@ u.background = function(ctx, r, g, b, a){
   } else {
   ctx.fillStyle = u.rgba(r, g, b, a);
   }
-  // TODO -- better solution for w and h here
   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   ctx.closePath();
   ctx.restore();
@@ -68,6 +67,7 @@ u.background = function(ctx, r, g, b, a){
 
 // get distance between two sets of x,y  coordinates
 // TODO -- objDist that assumes two objects, each w/x and y property?
+// TODO -- move this to connections? shapes?
 u.dist = function(x1, y1, x2, y2) {
  x2-=x1; y2-=y1;
  return Math.sqrt((x2*x2) + (y2*y2));

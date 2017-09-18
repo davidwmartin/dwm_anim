@@ -13,6 +13,7 @@ var motion = module.exports = {}
 motion.addMotion = function(object, dx, dy, angle, oscSpeed){
 	object.startx = object.x;
 	object.starty = object.y;
+	// TODO -- dx, dy not used in moveOsc, so the dual addMotion, move__ paradigm is a bit busted
 	object.dx = dx;
 	object.dy = dy;
 

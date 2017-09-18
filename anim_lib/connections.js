@@ -5,6 +5,9 @@
 var c = module.exports = {};
 
 
+/*************
+***** Simple Line */
+
 c.line = function (ctx, object1, object2){
 	var x1 = object1.x;
 	var y1 = object1.y;
@@ -19,7 +22,10 @@ c.line = function (ctx, object1, object2){
 
 }; 
 
+/*************
+***** Splines */
 
+// tPts used below in getcPts();
 c.spline = function(ctx, tPts, tension, thickness){
 
 	var tension = tension || 0.5;
@@ -88,3 +94,6 @@ function getcPts(pointsArray, t){
 	return cPts;
 
 }
+
+
+
