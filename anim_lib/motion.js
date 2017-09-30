@@ -18,7 +18,7 @@ motion.addMotion = function(object, dx, dy, angle, oscSpeed){
 	object.dy = dy;
 
 	// TODO -- split moveOsc props below into separate addMotionOsc function?
-	object.angle = angle;
+	if(angle !== undefined) object.angle = angle;
 	if(oscSpeed !== undefined) object.oscSpeed = oscSpeed; // optional oscSpeed prop -- if you intend to move via oscillator
 }
 
