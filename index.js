@@ -3,7 +3,7 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/imagework/shasta2.js');
+	animation = require('./animations/imagework/grantcolors.js');
 
 
 // When window loads, get errything started

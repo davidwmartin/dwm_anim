@@ -93,9 +93,20 @@ canvas.composite = function(baseCtx, ctxToComposite){
 }
 
 canvas.clear = function(ctx){
-	ctx.beginPath();
-	ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
-	ctx.closePath();
+	if (Array.isArray(ctx)) {
+		for (var i = 0; i < ctx.length; i++) {
+			clearCtx(ctx[i]);
+		}
+	}
+	else {
+		clearCtx(ctx);
+	}
+
+	function clearCtx(ctx){
+		ctx.beginPath();
+		ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
+		ctx.closePath();
+	}
 }
 
 function resize(canvas){
