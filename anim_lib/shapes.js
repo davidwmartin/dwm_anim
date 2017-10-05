@@ -45,8 +45,14 @@ shapes.Polygon = function(startX, startY, width, height, sides, angle){
 			  ctx.lineTo (this.x + this.w/2 * Math.cos(i * 2 * Math.PI / this.sides + this.angle), this.y + this.h/2 * Math.sin(i * 2 * Math.PI / this.sides + this.angle));
 			}
 
-	    if (fill) ctx.fill();
-	    if (stroke) ctx.stroke();
+	    if (fill) {
+	    	ctx.fillStyle = this.fill;
+	    	ctx.fill();
+	    }
+	    if (stroke) {
+	    	ctx.strokeStyle = this.stroke;
+	    	ctx.stroke();
+	    }
 
 	    ctx.closePath();
 	  }
@@ -65,8 +71,14 @@ shapes.Circle = function(startX, startY, width){
 			ctx.beginPath();
 			ctx.ellipse(this.x, this.y, this.w, this.w, 0, 0, Math.PI*2, true);
 
-		  if (fill) ctx.fill();
-		  if (stroke) ctx.stroke();
+		  if (fill) {
+	    	ctx.fillStyle = this.fill;
+	    	ctx.fill();
+	    }
+	    if (stroke) {
+	    	ctx.strokeStyle = this.stroke;
+	    	ctx.stroke();
+	    }
 
 			ctx.closePath();
 		}
