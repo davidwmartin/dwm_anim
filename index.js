@@ -3,13 +3,13 @@
 ******/
 
 var exportFrame = require('./modules/export-frame'),
-	animation = require('./animations/imagework/grantcolors.js');
+	animation = require('./animations/friendsinspace/niki.js');
 
 
 // When window loads, get errything started
 console.log('index.js loaded');
 var toVid = false; // uncomment for export
-var howManyFrames = 1600; // if toVid = true
+var howManyFrames = 810; // if toVid = true
 window.addEventListener("load", boomBoom(toVid));
 
 

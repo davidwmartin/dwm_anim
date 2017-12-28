@@ -33,7 +33,7 @@ Start server, make sure toVid = true when you hit page (likely w/headless browse
 
 Then run ffmpeg or similar. Working ffmpeg command (run from within output directory): 
 
-	ffmpeg -framerate 60 -y -i frame%04d.png -c:v libx264 -pix_fmt yuv420p -preset:v slow -profile:v baseline -crf 23 film.m4v
+	ffmpeg -framerate 30 -y -i frame%04d.png -c:v libx264 -pix_fmt yuv420p -preset:v slow -profile:v baseline -crf 23 film.m4v
 
 To crop a movie using ffmpeg, see [this S.O. thread](https://video.stackexchange.com/questions/4563/how-can-i-crop-a-video-with-ffmpeg)
 
